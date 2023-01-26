@@ -73,3 +73,46 @@ function onMouseEnteredColumn(column) {
   hoverColumn = column
   updateHover()
 }
+function hasPlayerWon(playerTurn, pieces) {
+  for (let index = 0; index < 42; index++) {
+    if (
+      index % 7 < 4 &&
+      pieces[index] === playerTurn &&
+      pieces[index + 1] === playerTurn &&
+      pieces[index + 2] === playerTurn &&
+      pieces[index + 3] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index < 21 &&
+      pieces[index] === playerTurn &&
+      pieces[index + 7] === playerTurn &&
+      pieces[index + 14] === playerTurn &&
+      pieces[index + 21] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index % 7 < 4 &&
+      index < 18 &&
+      pieces[index] === playerTurn &&
+      pieces[index + 8] === playerTurn &&
+      pieces[index + 16] === playerTurn &&
+      pieces[index + 24] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index % 7 >= 3 &&
+      index < 21 &&
+      pieces[index] === playerTurn &&
+      pieces[index + 6] === playerTurn &&
+      pieces[index + 12] === playerTurn &&
+      pieces[index + 18] === playerTurn
+    ) {
+      return true
+    }
+  }
+  return false
+}
