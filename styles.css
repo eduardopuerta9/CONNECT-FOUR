@@ -26,3 +26,6 @@ button {
   border-radius: 50%;
   flex-grow: 1;
 }
+.piece[data-player="1"]{
+  content: url(https://images.emojiterra.com/twitter/v13.1/512px/1fa90.png);width: 50px; height: 70px;
+}
