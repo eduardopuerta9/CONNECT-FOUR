@@ -1,0 +1,72 @@
+h1{
+  text-align: center;
+  color: white;
+}
+button {
+ position: absolute;
+ right: 48%;
+ top: 70%;
+}
+#board {
+  width: 70vmin;
+  height: 50vmin;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  padding-top: 10vmin;
+  position: absolute;
+  right: 31%;
+}
+
+.cell{
+  position: relative;
+  display: flex;
+  border: 2px solid whitesmoke;
+}
+
+
+.piece{
+border-radius: 50%;
+  flex-grow: 1;
+}
+.piece[data-player="1"]{
+content: url(https://images.emojiterra.com/twitter/v13.1/512px/1fa90.png);width: 50px; height: 70px;
+}
+.piece[data-player="2"]{
+  content: url(https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f30d.png);width: 50px; height: 70px;
+  }
+
+
+.piece[data-placed="false"]{
+  transform: translateY(-10vmin);
+}
+
+#modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.489); 
+  padding-top: 15vh;
+}
+#modal-content {
+  width: 80vw;
+  margin: auto;
+  padding: 2.5vmin;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#reset{
+  color: darkblue;
+  font-size: 4vh;
+  margin: 2.5vmin;
+  padding: 2.5vmin;
+  background-color: purple;
+  font-weight: bold;
+}
