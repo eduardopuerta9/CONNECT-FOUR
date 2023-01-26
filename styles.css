@@ -17,3 +17,8 @@ button {
   position: absolute;
   right: 31%;
 }
+.cell{
+  position: relative;
+  display: flex;
+  border: 2px solid whitesmoke;
+}
