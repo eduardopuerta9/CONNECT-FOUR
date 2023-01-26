@@ -40,22 +40,25 @@ function onColumnClicked(column) {
   piece.dataset.placed = true
   piece.dataset.player = playerTurn
   cell.appendChild(piece)
-}
-function checkGameWinOrDraw() {
-  if (!pieces.includes(0)) {
-    modalContainer.style.display = 'block'
-    modalMessage.textContent = `${
-      playerTurn === redTurn ? 'Red' : 'Yellow'
-    } WON!`
-    modalMessage.dataset.winner = playerTurn
+
+  //function checkGameWinOrDraw() {
+  //if (!pieces.includes(0)) {
+  // modalContainer.style.display = 'block'
+  // modalMessage.textContent = 'Draw'
+  // }
+  //// if (hasPlayerWon(playerTurn, pieces)) modalContainer.style.display = 'block'
+  // modalMessage.textContent = `${
+  //   playerTurn === redTurn ? 'Red' : 'Yellow'
+  // } WON!`
+  // modalMessage.dataset.winner = playerTurn
+  if (playerTurn === redTurn) {
+    playerTurn = yellowTurn
+  } else {
+    playerTurn = redTurn
   }
+  updateHover()
 }
-if (playerTurn === redTurn) {
-  playerTurn = yellowTurn
-} else {
-  playerTurn = redTurn
-}
-updateHover()
+
 function updateHover() {
   let unPlacedPiece = document.querySelector("[data-placed='false']")
   if (unPlacedPiece) {
@@ -70,6 +73,7 @@ function updateHover() {
     cell.appendChild(piece)
   }
 }
+
 function onMouseEnteredColumn(column) {
   hoverColumn = column
   updateHover()
