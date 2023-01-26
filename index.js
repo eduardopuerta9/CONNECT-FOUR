@@ -41,6 +41,23 @@ function onColumnClicked(column) {
   piece.dataset.player = playerTurn
   cell.appendChild(piece)
 
+  let unPlacedPiece = document.querySelector("[data-placed='false']")
+  let unPlacedY = unPlacedPiece.getBoundingClientRect().y
+  let placedY = piece.getBoundingClientRect().y
+  let yDiff = unPlacedY - placedY
+
+  piece.animate(
+    [
+      { transform: `translateY(${yDiff}px)`, offset: 0 },
+      { transform: `translateY(0px)`, offset: 1 }
+    ],
+    {
+      duration: 400,
+      easing: 'linear',
+      iterations: 1
+    }
+  )
+
   //function checkGameWinOrDraw() {
   //if (!pieces.includes(0)) {
   // modalContainer.style.display = 'block'
