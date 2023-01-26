@@ -22,3 +22,7 @@ button {
   display: flex;
   border: 2px solid whitesmoke;
 }
+.piece {
+  border-radius: 50%;
+  flex-grow: 1;
+}
