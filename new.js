@@ -11,3 +11,17 @@ const pieces = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]
+let playerTurn = redTurn
+let hoverColumn = -1
+for (let i = 0; i < 42; i++) {
+  let cell = document.createElement('div')
+  cell.className = 'cell'
+  board.appendChild(cell)
+
+  cell.onmouseenter = () => {
+    onMouseEnteredColumn(i % 7)
+  }
+  cell.onclick = () => {
+    onColumnClicked(i % 7)
+  }
+}
