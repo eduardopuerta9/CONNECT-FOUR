@@ -7,3 +7,13 @@ button {
   right: 48%;
   top: 70%;
 }
+#board {
+  width: 70vmin;
+  height: 50vmin;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  padding-top: 10vmin;
+  position: absolute;
+  right: 31%;
+}
