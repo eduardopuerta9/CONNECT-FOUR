@@ -25,3 +25,18 @@ for (let i = 0; i < 42; i++) {
     onColumnClicked(i % 7)
   }
 }
+function onColumnClicked(column) {
+  let availableRow = pieces
+    .filter((_, index) => index % 7 === column)
+    .lastIndexOf(0)
+  if (availableRow === -1) {
+    return
+  }
+  pieces[availableRow * 7 + column] = playerTurn
+  let cell = board.children[availableRow * 7 + column]
+  let piece = document.createElement('div')
+  piece.className = 'piece'
+  piece.dataset.placed = true
+  piece.dataset.player = playerTurn
+  cell.appendChild(piece)
+}
