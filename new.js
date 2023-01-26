@@ -40,3 +40,18 @@ function onColumnClicked(column) {
   piece.dataset.player = playerTurn
   cell.appendChild(piece)
 }
+function checkGameWinOrDraw() {
+  if (!pieces.includes(0)) {
+    modalContainer.style.display = 'block'
+    modalMessage.textContent = `${
+      playerTurn === redTurn ? 'Red' : 'Yellow'
+    } WON!`
+    modalMessage.dataset.winner = playerTurn
+  }
+}
+if (playerTurn === redTurn) {
+  playerTurn = yellowTurn
+} else {
+  playerTurn = redTurn
+}
+updateHover()
