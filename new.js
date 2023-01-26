@@ -55,3 +55,17 @@ if (playerTurn === redTurn) {
   playerTurn = redTurn
 }
 updateHover()
+function updateHover() {
+  let unPlacedPiece = document.querySelector("[data-placed='false']")
+  if (unPlacedPiece) {
+    unPlacedPiece.parentElement.removeChild(unPlacedPiece)
+  }
+  if (pieces[hoverColumn] === 0) {
+    let cell = board.children[hoverColumn]
+    let piece = document.createElement('div')
+    piece.className = 'piece'
+    piece.dataset.placed = false
+    piece.dataset.player = playerTurn
+    cell.appendChild(piece)
+  }
+}
