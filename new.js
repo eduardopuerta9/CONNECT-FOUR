@@ -69,3 +69,7 @@ function updateHover() {
     cell.appendChild(piece)
   }
 }
+function onMouseEnteredColumn(column) {
+  hoverColumn = column
+  updateHover()
+}
