@@ -25,6 +25,7 @@ for (let i = 0; i < 42; i++) {
     onColumnClicked(i % 7)
   }
 }
+
 function onColumnClicked(column) {
   let availableRow = pieces
     .filter((_, index) => index % 7 === column)
