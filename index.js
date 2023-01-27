@@ -1,18 +1,59 @@
 const board = document.querySelector('#board')
-const modalContainer = document.querySelector('#modal-container')
-const modalMessage = document.querySelector('#modal-message')
 const resetButton = document.querySelector('#reset')
 resetButton.onclick = () => {
   location.reload()
 }
-const redTurn = 1
-const yellowTurn = 2
-const pieces = [
+const saturnTurn = 1
+const earthTurn = 2
+const cells = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]
-let playerTurn = redTurn
+function hasPlayerWon(playerTurn, cells) {
+  for (let index = 0; index < 42; index++) {
+    if (
+      index % 7 < 4 &&
+      cells[index] === playerTurn &&
+      cells[index + 1] === playerTurn &&
+      cells[index + 2] === playerTurn &&
+      cells[index + 3] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index < 21 &&
+      cells[index] === playerTurn &&
+      cells[index + 7] === playerTurn &&
+      cells[index + 14] === playerTurn &&
+      cells[index + 21] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index % 7 < 4 &&
+      index < 18 &&
+      cells[index] === playerTurn &&
+      cells[index + 8] === playerTurn &&
+      cells[index + 16] === playerTurn &&
+      cells[index + 24] === playerTurn
+    ) {
+      return true
+    }
+    if (
+      index % 7 >= 3 &&
+      index < 18 &&
+      cells[index] === playerTurn &&
+      cells[index + 6] === playerTurn &&
+      cells[index + 12] === playerTurn &&
+      cells[index + 18] === playerTurn
+    ) {
+      return true
+    }
+  }
+}
+let playerTurn = saturnTurn
 let hoverColumn = -1
+let animating = false
 for (let i = 0; i < 42; i++) {
   let cell = document.createElement('div')
   cell.className = 'cell'
@@ -22,18 +63,20 @@ for (let i = 0; i < 42; i++) {
     onMouseEnteredColumn(i % 7)
   }
   cell.onclick = () => {
-    onColumnClicked(i % 7)
+    if (!animating) {
+      onColumnClicked(i % 7)
+    }
   }
 }
 
 function onColumnClicked(column) {
-  let availableRow = pieces
+  let availableRow = cells
     .filter((_, index) => index % 7 === column)
     .lastIndexOf(0)
   if (availableRow === -1) {
     return
   }
-  pieces[availableRow * 7 + column] = playerTurn
+  cells[availableRow * 7 + column] = playerTurn
   let cell = board.children[availableRow * 7 + column]
   let piece = document.createElement('div')
   piece.className = 'piece'
@@ -45,11 +88,14 @@ function onColumnClicked(column) {
   let unPlacedY = unPlacedPiece.getBoundingClientRect().y
   let placedY = piece.getBoundingClientRect().y
   let yDiff = unPlacedY - placedY
-
-  piece.animate(
+  animating = true
+  removeUnplacedPiece()
+  let animation = piece.animate(
     [
       { transform: `translateY(${yDiff}px)`, offset: 0 },
-      { transform: `translateY(0px)`, offset: 1 }
+      { transform: `translateY(0px)`, offset: 0.6 },
+      { transform: `translateY(${yDiff / 20}px)`, offset: 0.8 },
+      { transform: `translateY(0px)`, offset: 0.95 }
     ],
     {
       duration: 400,
@@ -57,31 +103,28 @@ function onColumnClicked(column) {
       iterations: 1
     }
   )
-
-  //function checkGameWinOrDraw() {
-  //if (!pieces.includes(0)) {
-  // modalContainer.style.display = 'block'
-  // modalMessage.textContent = 'Draw'
-  // }
-  //// if (hasPlayerWon(playerTurn, pieces)) modalContainer.style.display = 'block'
-  // modalMessage.textContent = `${
-  //   playerTurn === redTurn ? 'Red' : 'Yellow'
-  // } WON!`
-  // modalMessage.dataset.winner = playerTurn
-  if (playerTurn === redTurn) {
-    playerTurn = yellowTurn
+  animation.addEventListener('finish', checkGameWinOrDraw)
+}
+function checkGameWinOrDraw() {
+  animating = false
+  if (!cells.includes(0)) {
+    confirm('Game is drawn')
+    location.reload()
+  }
+  if (hasPlayerWon(playerTurn, cells)) {
+    confirm(`${playerTurn === saturnTurn ? 'SATURN' : 'EARTH'} WON!`)
+    location.reload()
+  }
+  if (playerTurn === saturnTurn) {
+    playerTurn = earthTurn
   } else {
-    playerTurn = redTurn
+    playerTurn = saturnTurn
   }
   updateHover()
 }
-
 function updateHover() {
-  let unPlacedPiece = document.querySelector("[data-placed='false']")
-  if (unPlacedPiece) {
-    unPlacedPiece.parentElement.removeChild(unPlacedPiece)
-  }
-  if (pieces[hoverColumn] === 0) {
+  removeUnplacedPiece()
+  if (cells[hoverColumn] === 0) {
     let cell = board.children[hoverColumn]
     let piece = document.createElement('div')
     piece.className = 'piece'
@@ -90,51 +133,15 @@ function updateHover() {
     cell.appendChild(piece)
   }
 }
-
+function removeUnplacedPiece() {
+  let unPlacedPiece = document.querySelector("[data-placed='false']")
+  if (unPlacedPiece) {
+    unPlacedPiece.parentElement.removeChild(unPlacedPiece)
+  }
+}
 function onMouseEnteredColumn(column) {
   hoverColumn = column
-  updateHover()
-}
-function hasPlayerWon(playerTurn, pieces) {
-  for (let index = 0; index < 42; index++) {
-    if (
-      index % 7 < 4 &&
-      pieces[index] === playerTurn &&
-      pieces[index + 1] === playerTurn &&
-      pieces[index + 2] === playerTurn &&
-      pieces[index + 3] === playerTurn
-    ) {
-      return true
-    }
-    if (
-      index < 21 &&
-      pieces[index] === playerTurn &&
-      pieces[index + 7] === playerTurn &&
-      pieces[index + 14] === playerTurn &&
-      pieces[index + 21] === playerTurn
-    ) {
-      return true
-    }
-    if (
-      index % 7 < 4 &&
-      index < 18 &&
-      pieces[index] === playerTurn &&
-      pieces[index + 8] === playerTurn &&
-      pieces[index + 16] === playerTurn &&
-      pieces[index + 24] === playerTurn
-    ) {
-      return true
-    }
-    if (
-      index % 7 >= 3 &&
-      index < 21 &&
-      pieces[index] === playerTurn &&
-      pieces[index + 6] === playerTurn &&
-      pieces[index + 12] === playerTurn &&
-      pieces[index + 18] === playerTurn
-    ) {
-      return true
-    }
+  if (!animating) {
+    updateHover()
   }
-  return false
 }
