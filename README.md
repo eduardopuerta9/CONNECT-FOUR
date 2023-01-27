@@ -20,7 +20,7 @@
 
 ***
 ### ***Screenshots***
-###### Connect Four!
+###### Game
 <img width="800" alt="Screen Shot 2023-01-27 at 9 45 38 AM" src="https://user-images.githubusercontent.com/122240360/215114718-7693b643-039b-4960-ade1-858d08450458.png">
 
 ###### Rules
