@@ -10,8 +10,12 @@ body{
 }
 h1{
   text-align: center;
-  color: white
+  color: white;
+  font-size: 4vw;
+  padding: 2vw;
+  margin: 1vw;
 }
+
 button {
   position: absolute;
   right: 48%;
