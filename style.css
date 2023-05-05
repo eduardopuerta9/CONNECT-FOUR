@@ -1,14 +1,20 @@
 
-html{
+html {
   background-image: url(./connectfourbackground.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
-body{
+
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
-h1{
+
+h1 {
   text-align: center;
   color: white;
   font-size: 4vw;
@@ -20,8 +26,9 @@ button {
   position: absolute;
   right: 50%;
   bottom: 5%;
-  font-size: 1.5vw;
-  padding: 1vw 2vw;
+  transform: translateX(50%);
+  font-size: 16px;
+  padding: 8px 16px;
 }
 
 #board {
@@ -34,45 +41,10 @@ button {
   padding-top: 10vw;
   position: absolute;
   left: 50%;
+  transform: translateX(-50%);
   top: 30%;
-  transform: translate(-50%, -30%);
 }
 
-@media only screen and (max-width: 768px) {
-  /* Adjust board size and button position for smaller screens */
-  #board {
-    padding: 10vw;
-    width: 90vw;
-    height: 70vw;
-    padding-top: 20vw;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -40%);
-  }
-  button {
-    bottom: 10%;
-    font-size: 2vw;
-    padding: 1vw 2vw;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  /* Further adjust board size and button position for very small screens */
-  #board {
-    padding: 15vw;
-    width: 100vw;
-    height: 80vw;
-    padding-top: 30vw;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  button {
-    bottom: 15%;
-    font-size: 3vw;
-    padding: 1vw 2vw;
-  }
-}
 @media only screen and (max-width: 414px) and (max-height: 896px) {
   /* Adjust board size and button position for iPhone screens */
   #board {
