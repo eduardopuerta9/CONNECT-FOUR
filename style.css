@@ -1,17 +1,17 @@
 
 html {
   background-image: url(./connectfourbackground.jpg);
-  background-repeat: no-repeat;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
+  height: 100vh;
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  height: 100vh;
 }
 
 h1 {
@@ -24,9 +24,8 @@ h1 {
 
 button {
   position: absolute;
-  right: 50%;
-  bottom: 5%;
-  transform: translateX(50%);
+  right: 48%;
+  top: 70%;
   font-size: 16px;
   padding: 8px 16px;
 }
