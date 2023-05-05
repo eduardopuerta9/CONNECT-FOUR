@@ -89,4 +89,3 @@ border: 2px solid whitesmoke;
   .piece[data-placed="false"]{
     transform: translateY(-10vmin);
   }
-  
