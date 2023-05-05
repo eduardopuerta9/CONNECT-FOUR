@@ -73,7 +73,26 @@ button {
     padding: 1vw 2vw;
   }
 }
-
+@media only screen and (max-width: 414px) and (max-height: 896px) {
+  /* Adjust board size and button position for iPhone screens */
+  #board {
+    padding: 10vw;
+    width: 90vw;
+    height: 70vw;
+    padding-top: 20vw;
+    right: 5%;
+    top: 15%;
+  }
+  button {
+    right: 40%;
+    top: 75%;
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  h1 {
+    font-size: 6vw;
+  }
+}
 
 
 .cell{
