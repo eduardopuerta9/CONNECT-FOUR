@@ -1,7 +1,7 @@
 
 html{
   background-image: url(./connectfourbackground.jpg);
-      background-size: cover;
+  background-size: cover;
 }
 body{
   display: flex;
@@ -16,20 +16,56 @@ button {
   position: absolute;
   right: 48%;
   top: 70%;
+  font-size: 16px;
+  padding: 8px 16px;
 }
 #board {
-  padding: 10vmin;
-  width: 70vmin;
-  height: 50vmin;
+  padding: 5vw;
+  width: 80vw;
+  height: 50vw;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  padding-top: 10vmin;
+  padding-top: 10vw;
   position: absolute;
-  right: 27%;
+  right: 10%;
   top: 10%;
-  
 }
+
+@media only screen and (max-width: 768px) {
+  /* Adjust board size and button position for smaller screens */
+  #board {
+    padding: 10vw;
+    width: 90vw;
+    height: 70vw;
+    padding-top: 20vw;
+    right: 5%;
+  }
+  button {
+    right: 42%;
+    top: 80%;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* Further adjust board size and button position for very small screens */
+  #board {
+    padding: 15vw;
+    width: 100vw;
+    height: 80vw;
+    padding-top: 30vw;
+    right: 0;
+  }
+  button {
+    right: 40%;
+    top: 85%;
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+
 
 .cell{
  display: flex;
